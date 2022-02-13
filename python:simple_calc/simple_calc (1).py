@@ -4,7 +4,7 @@
 Simple Calculator
 --------------------------------------------------------------------------
 License:   
-Copyright 2021 Erik Welsh
+Copyright 2022 Sam Sarver
 
 Redistribution and use in source and binary forms, with or without 
 modification, are permitted provided that the following conditions are met:
@@ -61,13 +61,21 @@ import operator
 # ------------------------------------------------------------------------
 # Global variables
 # ------------------------------------------------------------------------
-
+#make input work for python 2 and 3
+try:
+    input = raw_input
+except NameError:
+    pass
 # Dictionary of operators
 operators = {
     "+" : operator.add,
     "-" : operator.sub,
     "*" : operator.mul,
-    "/" : operator.truediv
+    "/" : operator.truediv,
+    "<<" : operator.ilshift,
+    ">>" : operator.irshift,
+    "%" : operator.mod,
+    "**" : operator.pow
 }
 
 # ------------------------------------------------------------------------
@@ -83,7 +91,7 @@ def get_user_input():
     try:
         in1 = float(input("Enter first number:  "))
         in2 = float(input("Enter second number: "))
-        op  = input("Enter operator (+, -, *, /): ")
+        op  = input("Enter operator (+, -, *, /, <<, >>, %, **): ")
     except ValueError:
         print("Input not a valid number.")
 
@@ -114,7 +122,10 @@ if __name__ == "__main__":
             break
     
         # Calculate results and print result
-        print(operation(in1, in2))
+        try: #added because lshift and rshift require integers not floats
+            print(operation(in1, in2))
+        except:
+            print(operation(int(in1), int(in2)))
     
     
     
