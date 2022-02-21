@@ -169,7 +169,7 @@ while not game_over:
     turn += 1
     turn = turn % 2 #odd/even turns
     
-    
+# test push github
 
     
     
