@@ -10,5 +10,5 @@ How to Operate Project:
 3) Run main.py
 
 Additional Information:
-1) If readboard.py has issues detecting the position of pieces on the board then adjust the parameters in the HoughCircles function for the red, blue, and green circles.
-   You can also set debug = True so then you will see all the outputs of the code to see where the algorithm goes wrong.
+1) If readboard.py has issues detecting the position of pieces on the board then adjust the parameters in the HoughCircles function for the red, blue, and green circles. (lines 153, 172, 191)
+   You can also set debug = True so then you will see all the outputs of the code to see where the algorithm goes wrong. You may also need to adjust the HSV values on lines 84-87 depending on the colors of your pieces and the background behind the connect 4 board. 
