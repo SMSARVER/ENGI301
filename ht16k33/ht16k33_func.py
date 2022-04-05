@@ -151,22 +151,21 @@ def display_clear():
 
 
 def update_display(value):
-    #Update the value on the display.  
+    """Update the value on the display.  
     
-    #This function will clear the display and then set the appropriate digits
-    display_clear()
-    #:param value: Value must be between 0 and 9999.
+    This function will clear the display and then set the appropriate digits
     
-    if (value >= 0) & (value <= 9999):
-        display_set_digit(0, display_encode(value[0], 0), 0) #display_encode(value[0], 0)
-        display_set_digit(1, display_encode(value[1], 0), 0) 
-        display_set_digit(2, display_encode(value[2], 0), 0)
-        display_set_digit(3, display_encode(value[3], 0), 0)
-    else:
-        raise ValueError("Number must be between 0 and 999")
-    #Will throw a ValueError if number is not between 0 and 9999.
-       
-    raise ValueError("Function not implemented.")
+    :param value: Value must be between 0 and 9999.
+    
+    Will throw a ValueError if number is not between 0 and 9999.
+    """    
+    if (value < 0) or (value > 9999):
+        raise ValueError("Function not implemented.")
+    
+    display_set_digit(3, (value % 10))
+    display_set_digit(2, ((value // 10) % 10))
+    display_set_digit(1, ((value // 100) % 10))
+    display_set_digit(0, ((value // 1000) % 10))
 
 # End def
 
