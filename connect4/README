@@ -1,0 +1,14 @@
+Libraries to Install:
+sudo apt-get install python3-numpy
+sudo apt-get install python3-opencv
+pip3 install adafruit-circuitpython-charlcd
+sudo pip3 install Adafruit_BBIO
+
+How to Operate Project:
+1) Complete wiring: see hackster page: https://www.hackster.io/samuelmsarver/robot-v-s-human-connect-4-eca0b5
+2) Position USB Camera so that the connect 4 board fully fills the camera frame
+3) Run main.py
+
+Additional Information:
+1) If readboard.py has issues detecting the position of pieces on the board then adjust the parameters in the HoughCircles function for the red, blue, and green circles.
+   You can also set debug = True so then you will see all the outputs of the code to see where the algorithm goes wrong.
