@@ -1,4 +1,4 @@
-Libraries to Install:
+Libraries to Install: numpy, opencv, adafruit-circuitpython-charlcd, Adafruit_BBIO
 sudo apt-get install python3-numpy
 sudo apt-get install python3-opencv
 pip3 install adafruit-circuitpython-charlcd
