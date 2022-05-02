@@ -1,0 +1,18 @@
+"Qty";"Value";"Device";"Package";"Parts";"Description";"AVAILABILITY";"COMMENT";"DESCRIPTION";"EU_ROHS_COMPLIANCE";"MANUFACTURER";"MF";"MP";"PACKAGE";"PART_REV";"PRICE";"PURCHASE-URL";"STANDARD";
+"2";"";"PINHD-1X2";"H1X2-2.54";"J4, J5";"2-pin 100 mil header";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"";"PINHD-1X3";"H1X3-2.54";"JP1";"PIN HEADER";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"0.1 Ohm";"R_R0805";"R0805";"R3";"RESISTOR, American symbol";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"1 kOhm";"R_R0603";"R0603";"R2";"RESISTOR, American symbol";"";"";"";"";"";"";"";"";"";"";"";"";
+"2";"1 uF";"C_C0402";"C0402";"C1, C2";"Capacitor SMD.";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"6-534237-4";"6-534237-4";"TE_6-534237-4";"J3";"Check availability";"In Stock";"6-534237-4";" 16 MODII VRT SR CE 100/115 ";"Compliant";"";"TE Connectivity";"6-534237-4";"None";"";"None";"https://pricing.snapeda.com/search/part/6-534237-4/?ref=eda";"";
+"1";"B5B-ZR(LF)(SN)";"B5B-ZR(LF)(SN)";"JST_B5B-ZR(LF)(SN)";"J1";"Check availability";"In Stock";"";" Conn Shrouded Header HDR 5 POS 1.5mm Solder ST Thru-Hole Box ";"";"";"JST";"B5B-ZR (LF)(SN)";"None";"";"None";"https://pricing.snapeda.com/search/part/B5B-ZR (LF)(SN)/?ref=eda";"";
+"6";"FIDUCIAL";"FIDUCIAL";"FIDUCIAL_40MIL";"FUD1, FUD2, FUD3, FUD4, FUD5, FUD6";"";"";"";"";"";"";"";"";"";"";"";"";"";
+"4";"MOUNTING_HOLE";"MOUNTING_HOLE";"MOUNTING_HOLE";"MGT1, MGT2, MGT3, MGT4";"Chassis Mounting Hole w/GND connection ability";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"PJ-102BH-PAD";"PJ-102BH-PAD";"CUI_PJ-102BH-DIM-SMT-PAD";"J2";"2.5 mm Center Pin, 5.0 A, Right Angle, Through Hole, Tapered Pins, Dc Power Jack Connector";"";"";"";"";"CUI INC";"";"";"";"1.02";"";"";"Manufacturer recommendations";
+"1";"POCKETBEAGLE";"POCKETBEAGLE";"POCKETBEAGLE";"U1";"";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"POTENTIOMETER";"POTENTIOMETER";"POT-PO90S";"R1";"Potentiometer - Examples:";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"PUSH_BUTTON";"PUSH_BUTTON";"BUTTON_12.5MM";"SW1";"";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"SERVO_SG90";"SERVO_SG90";"SERVO-X1";"U2";"";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"TXS0108EPWR";"TXS0108EPWR";"SOP65P640X120-20N";"U3";"Check availability";"In Stock";"";" 8-bit bidirectional voltage-level shifter for open-drain and push-pull application ";"";"";"Texas Instruments";"TXS0108EPWR";"TSSOP-20 Texas Instruments";"";"None";"https://pricing.snapeda.com/search/part/TXS0108EPWR/?ref=eda";"";
+"1";"ULN2003AN";"ULN2003AN";"DIP794W45P254L1969H508Q16";"Q1";"Check availability";"In Stock";"";" 50-V, 7-ch darlington transistor array, -20C to 70C ";"";"";"Texas Instruments";"ULN2003AN";"PDIP-16 Texas Instruments";"";"None";"https://pricing.snapeda.com/search/part/ULN2003AN/?ref=eda";"";
+"1";"USB";"USB";"USB";"USB1";"USB-A1HSW6";"";"";"";"";"";"";"";"";"";"";"";"";
