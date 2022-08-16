@@ -44,14 +44,10 @@ import sys
 import math
 import time
 #import servo as SERVO
-#from servo import Servo
+from servo import Servo
 import lcd as LCD
-import readboard as RB
+#import readboard as RB
 from bbpystepper import Stepper
-import dropPiece
-import posReset
-import movetopos
-import servo
 
 ROW_COUNT = 6
 COLUMN_COUNT = 7
@@ -219,6 +215,7 @@ def get_valid_locations(board):
 	return valid_locations
 
 def pick_best_move(board, piece):
+
 	valid_locations = get_valid_locations(board)
 	best_score = -10000
 	best_col = random.choice(valid_locations)
@@ -233,6 +230,15 @@ def pick_best_move(board, piece):
 
 	return best_col
 
+def moveToCol(col):
+	deg = col * DEG2POS
+	mystepper.rotate(deg, 10) # (degrees (+ cw, - ccw), rpm)
+	
+def releasePiece():
+	servo1.left()
+	time.sleep(1.08)
+	servo1.stop()
+
 def getBoard(board):
 	tries = 0
 	while (True):
@@ -243,12 +249,16 @@ def getBoard(board):
 			if (np.array_equal(board, newBoard)):
 				tries = tries + 1
 				print('no new piece detected (',tries,')')
+				#time.sleep(1)
 			else:
+				return newBoard
+				#time.sleep(0.5)
 				newBoard2 = RB.readBoard()
 				if (np.array_equal(newBoard, newBoard2)):
 					if (np.array_equal(board, newBoard2)):
 						tries = tries + 1
 						print('no new piece detected (',tries,')')
+						#time.sleep(1)
 					else:
 						return newBoard
 				else:
@@ -257,79 +267,96 @@ def getBoard(board):
 			print("error in board detection")
 			tries = tries + 1
 		
-def wait4blankBoard():
-	while True:
-		newBoard = RB.readBoard()
-		if (np.array_equal(create_board(), newBoard)):
-			newBoard2 = RB.readBoard()
-			if (np.array_equal(create_board(), newBoard2)):
-				return
-		
 
 ''' START OF MAIN CODE ''' 
 
+servo1 = Servo()
+servo1.stop()
 lcd = LCD.LCD_Display()
 mystepper = Stepper()
-position = posReset.reset(1)
 
 try: #needed to detect when the user stops the program
 	while True: #game repeates when over
+		
+		##clearGameBoard() #waits until board is clear of pieces with camera
+		
 		board = create_board()
 		print_board(board)
 		game_over = False
+		
 		minimax_depth = 4 #depth how many turns in the future alg looks. max of 5 for PB processing power. min of 1 
 		## minimax_depth = getDifficulty() #sets difficulty from a range of 1-4 with button (short press for next, long press for select) #currently not added
-		turn = AI #random.randint(PLAYER, AI)
+		
+		turn = random.randint(PLAYER, AI)
 		
 		while not game_over:
-			if turn == PLAYER:
-				lcd.display("Human player\nturn...")
-				print("human player turn...")#
-				#col = int(input("Player 1 make your selection (0-6): ")) #delete'''
-				board = getBoard(board) #waits until a piece is added to the board, returns new board
+		
+			if turn == PLAYER: 
+				
+				lcd.display("Human player\nturn")
+				print("human player turn:")#
+				col = int(float(input("Player 1 make your selection (0-6): "))) #delete'''
+				
+				'''board = getBoard(board) #waits until a piece is added to the board, returns new board
 				print("board recieved")
-				print_board(board)
+				print_board(board)'''
 				
 				if winning_move(board, PLAYER_PIECE):
 					game_over = True
+				#print(RB.readBoard())
 				turn += 1
 				turn = turn % 2
+				if is_valid_location(board, col): #delete
+					row = get_next_open_row(board, col) #delete
+					drop_piece(board, row, col, PLAYER_PIECE) #delete
+		
+
+		
+					'''turn += 1
+					turn = turn % 2'''
+		
+					print_board(board)#''' #undo this comment for no opencv
+		
+		
+			# # Ask for Player 2 Input
 			if turn == AI and not game_over:				
-				print("Computer Turn. Calculating...")
+				print("Computer Turn. computer calculating...")
 				lcd.display("Computer Turn\ncalculating...")
+				
 				#col = random.randint(0, COLUMN_COUNT-1)
-				col, minimax_score = minimax(board, minimax_depth, -math.inf, math.inf, True) #get best move using minimax
+				#col = pick_best_move(board, AI_PIECE)
+				col, minimax_score = minimax(board, minimax_depth, -math.inf, math.inf, True)
+		
 				if is_valid_location(board, col):
+					
 					row = get_next_open_row(board, col)
 					drop_piece(board, row, col, AI_PIECE)
+					
+					moveToCol(col) #moves stepper to position 0-6 on board
+					releasePiece() #rotates servo 360 deg to release 1 robot game piece SERVO.right()
+					moveToCol(-col) #moves stepper backwards to origin
+					
 					if winning_move(board, AI_PIECE):
+		
 						game_over = True
+		
+					
+		
 					turn += 1
 					turn = turn % 2
-					#print("please put a BLUE piece in column (left to right):",(col+1))
-					#lcd.display('Place BLUE in\ncolumn: '+str(col+1))
-					newpos = col + 1
-					#print('moving to position',newpos,'from position',position)
-					#print(position,newpos)
-					print('Dropping piece in col ', col+1)
-					lcd.display("Dropping piece\nin col " + str(col+1))
-					newpos = movetopos.goto(position, newpos)
-					servo.drop1()
-					position = 4 # return to board center after piece dropped
-					position = movetopos.goto(newpos, position)
+					
+					#print("please put a BLUE piece in column (left to right):")
+					#print(col+1)
+					#verify = input("press ENTER to continue ")
+					
 					print_board(board)
+		
 			if game_over:
-				print("Game over!")
-				lcd.display("Game over!")
-				#verify = input("Please emptey board. Press ENTER to start a new game. ")
+				print("game over")
+				lcd.display("game over!")
+				verify = input("Please emptey board. Press ENTER to start a new game. ")
 				time.sleep(2)
-				print("Empety board to start new game")
-				lcd.display("Empety board to\nstart new game")
-				wait4blankBoard()
-				print("Starting new game")
-				lcd.display("Starting new\ngame")
-				
 
 except KeyboardInterrupt:
 	servo1.cleanup() #cleanup
-	print("game stopped manually through KeyboardInterrupt")
+	print("game stopped manually")

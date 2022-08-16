@@ -74,5 +74,5 @@ class LCD_Display():
 
 if __name__ == '__main__':
     disp = LCD_Display()
-    #disp.display("abcdefghijklmnop\nqrstuv")
-    disp.display("                \n                ")
+    disp.display("abcdefghijklmnop\nqrstuA")
+    #disp.display("                \n                ")

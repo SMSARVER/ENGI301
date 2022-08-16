@@ -127,14 +127,16 @@ if __name__ == '__main__':
     servo = Servo()
 
     try:
-        time.sleep(1)
+        #time.sleep(1)
         print("Turn left (counterclockwise)")
-        servo.left()
-        #time.sleep(2)
-        #print("Turn right (clockwise)")
-        #servo.right()
-        #time.sleep(2)
-
+        for i in range(15):
+            servo.right()
+            time.sleep(0.47)
+            servo.cleanup()
+            
+            time.sleep(1)
+            servo = Servo()
+        
     except KeyboardInterrupt:
         pass
 
@@ -143,3 +145,10 @@ if __name__ == '__main__':
 
     print("Test Complete")
 
+def drop1():
+    servo = Servo()
+    servo.right()
+    time.sleep(0.47) ## adjusted to the time it takes to rotate 180 degrees
+    #servo.stop()
+    servo.cleanup()
+    time.sleep(0.5)
